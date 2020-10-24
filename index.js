@@ -44,12 +44,36 @@ class App {
 
   logRequest(req, res, next) {
     next();
+    const logRequest = new Logger("client");
+    logRequest.info(`Request Path:${req.path}`);
+    logRequest.info(`user ip address:${req.connection.remoteAddress}`);
   }
 
   getWallets() {
     return new Promise((resolve) => {
       resolve(this.walletData);
     });
+  }
+
+  addWallet(body) {
+    const newWallet = {
+      "name": body.name,
+      "address": body.address,
+      "currency": body.currency,
+      "balance": body.balance
+    };
+    this.walletData.push(newWallet);
+  }
+
+  editWallet(id,body) {
+    this.walletData[id].name = body.name;
+    this.walletData[id].address = body.address;
+    this.walletData[id].currency = body.currency;
+    this.walletData[id].balance = body.balance;
+  }
+
+  deleteWallet(id) {
+    this.walletData = this.walletData.splice(id,1);
   }
 }
 
@@ -59,3 +83,4 @@ if (require.main === module) {
 } else {
   module.exports = App;
 }
+
