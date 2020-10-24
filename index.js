@@ -63,6 +63,7 @@ class App {
       "balance": body.balance
     };
     this.walletData.push(newWallet);
+    return newWallet;
   }
 
   editWallet(id,body) {
@@ -70,6 +71,7 @@ class App {
     this.walletData[id].address = body.address;
     this.walletData[id].currency = body.currency;
     this.walletData[id].balance = body.balance;
+    return this.walletData[id];
   }
 
   deleteWallet(id) {

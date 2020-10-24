@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
     let wallets = [];
 
     try {
-        await app.deleteWallet(0);
         wallets = await app.getWallets();
     } catch (e) {
         logger.error(e);
@@ -19,22 +18,24 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
         const app = req.app.get("app");
         try {
-            await app.addWallet(req.body);
+            const newWallet = await app.addWallet(req.body);
         } catch (e) {
             logger.error(e);
             return res.status(500).send();
         }
+     res.json(newWallet);
     }
 );
 
 router.put("/:id", async (req, res) => {
         const app = req.app.get("app");
         try {
-            await app.editWallet(req.params.id,req.body);
+             const newWallet = await app.editWallet(req.params.id,req.body);
         } catch (e) {
             logger.error(e);
             return res.status(500).send();
         }
+     res.json(newWallet);
     }
 );
 
@@ -46,6 +47,7 @@ router.delete("/:id", async (req, res) => {
             logger.error(e);
             return res.status(500).send();
         }
+     res.json("deleted");
     }
 );
 
