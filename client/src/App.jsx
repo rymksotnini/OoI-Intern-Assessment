@@ -62,9 +62,9 @@ export default function JuniperAdmin() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <WalletsPage wallets={wallets} ethRate={ethRate} btcRate={btcRate} />
-          )}
         </CssBaseline>
       </ThemeProvider>
     </div>
   );
 }
+
