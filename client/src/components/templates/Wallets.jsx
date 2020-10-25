@@ -18,9 +18,9 @@ export default function ({ wallets, rate }) {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12}>
-          <WalletCard>
+          <WalletCard wallet={wallets} rate={rate}>
           </WalletCard>
-	  <PriceInfo/>
+        <PriceInfo/>
         </Grid>
       </Grid>
     </div>
